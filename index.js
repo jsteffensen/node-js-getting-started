@@ -27,7 +27,7 @@ express()
 	  res.render('pages/index');
 	  console.log('request ip -------------> ' + req.ips);
 	  
-	  connection.query('INSERT INTO Ips (IpAddress) VALUES (`' + req.ips + '`)', function(err, rows, fields) {
+	  connection.query('INSERT INTO Ips (IpAddress) VALUES (\'' + req.ips + '\')', function(err, rows, fields) {
 	  if (err) throw err;
       console.log('saved');
 	});
