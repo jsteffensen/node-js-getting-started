@@ -22,7 +22,7 @@ express()
 	  res.render('pages/index');
 	  console.log('request ip -------------> ' + req.ips);
 	  
-		client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
+		client.query('CREATE TABLE Ips(IpAddress varchar(255));', (err, res) => {
 		  if (err) throw err;
 		  for (let row of res.rows) {
 			console.log(JSON.stringify(row));
