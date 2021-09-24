@@ -22,11 +22,9 @@ express()
 	  res.render('pages/index');
 	  console.log('request ip -------------> ' + req.ips);
 	  
-		client.query('CREATE TABLE Ips(IpAddress varchar(255));', (err, res) => {
+		client.query('INSERT INTO Ips (IpAddress) VALUES (' + req.ips + ');', (err, res) => {
 		  if (err) throw err;
-		  for (let row of res.rows) {
-			console.log(JSON.stringify(row));
-		  }
+		  console.log('saved: ' + req.ips);
 		  client.end();
 		});
   })
