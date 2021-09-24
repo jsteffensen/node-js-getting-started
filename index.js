@@ -2,16 +2,11 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 
-const { Client } = require('pg');
+var mysql = require('mysql');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
-client.connect();
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -22,10 +17,14 @@ express()
 	  res.render('pages/index');
 	  console.log('request ip -------------> ' + req.ips);
 	  
-		client.query('INSERT INTO Ips (IpAddress) VALUES (' + req.ips + ');', (err, res) => {
+		connection.connect();
+
+		connection.query('CREATE TABLE Ips ()', function(err, rows, fields) {
 		  if (err) throw err;
-		  console.log('saved: ' + req.ips);
-		  client.end();
+
+		  console.log('The solution is: ', rows[0].solution);
 		});
+
+		connection.end();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
