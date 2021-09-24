@@ -14,7 +14,7 @@ connection.query('SELECT * from Ips', function(err, rows, fields) {
 	});
 });
 
-connection.end();
+
 
 
 
@@ -33,7 +33,7 @@ express()
       console.log('saved');
 	});
 
-	connection.end();
+
 	  
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
