@@ -19,7 +19,7 @@ express()
 	  
 		connection.connect();
 
-		connection.query('CREATE TABLE Ips ()', function(err, rows, fields) {
+		connection.query('CREATE TABLE Ips (IpAddress varchar(255));', function(err, rows, fields) {
 		  if (err) throw err;
 
 		  console.log('The solution is: ', rows[0].solution);
