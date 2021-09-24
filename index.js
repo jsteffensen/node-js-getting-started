@@ -9,7 +9,9 @@ connection.connect();
 
 connection.query('SELECT * from Ips', function(err, rows, fields) {
   if (err) throw err;
-  console.log('The solution is: ', rows[0].solution);
+    rows.forEach(element => {
+	  console.log(element);
+	});
 });
 
 connection.end();
